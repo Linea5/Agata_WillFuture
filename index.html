@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will Future – Agátka</title>
+<style>
+  :root {
+    --bg: #0f0f1a;
+    --card: #1a1a2e;
+    --accent: #7c3aed;
+    --accent2: #06b6d4;
+    --correct: #22c55e;
+    --wrong: #ef4444;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #2d2d4e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 16px;
+  }
+  h1 {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 24px;
+  }
+
+  /* EXPLAINER */
+  #explainer { max-width: 640px; margin: 0 auto; }
+  .rule-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+  }
+  .rule-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .rule-label.pos { background: #14532d; color: #86efac; }
+  .rule-label.neg { background: #7f1d1d; color: #fca5a5; }
+  .rule-label.que { background: #1e3a5f; color: #93c5fd; }
+
+  .formula {
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f1f5f9;
+    margin-bottom: 8px;
+  }
+  .example {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .example span { color: var(--accent2); font-style: italic; }
+  .tip {
+    font-size: 0.82rem;
+    color: #a78bfa;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #1e1b4b;
+    border-radius: 8px;
+  }
+
+  .btn-start {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    margin: 20px auto 0;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-start:hover { opacity: 0.88; }
+
+  /* QUIZ */
+  #quiz { display: none; max-width: 640px; margin: 0 auto; }
+  .progress-bar-wrap {
+    background: var(--border);
+    border-radius: 99px;
+    height: 6px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 99px;
+    transition: width 0.4s;
+  }
+  .q-counter {
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: -14px;
+    margin-bottom: 16px;
+  }
+
+  .q-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 20px;
+  }
+  .q-type-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .q-text {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    color: #f1f5f9;
+  }
+  .q-text .blank {
+    display: inline-block;
+    border-bottom: 2px solid var(--accent2);
+    min-width: 100px;
+    height: 22px;
+    vertical-align: bottom;
+  }
+
+  /* fill-in input */
+  .fill-input {
+    width: 100%;
+    background: #0f0f1a;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: var(--text);
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    margin-bottom: 12px;
+  }
+  .fill-input:focus { border-color: var(--accent2); }
+  .fill-input.correct-input { border-color: var(--correct); background: #052e16; }
+  .fill-input.wrong-input { border-color: var(--wrong); background: #2d0707; }
+
+  /* multiple choice */
+  .mc-options { display: flex; flex-direction: column; gap: 9px; margin-bottom: 12px; }
+  .mc-btn {
+    background: #0f0f1a;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 14px;
+    color: var(--text);
+    font-size: 0.95rem;
+    font-family: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .mc-btn:hover:not(:disabled) { border-color: var(--accent2); background: #1a1a2e; }
+  .mc-btn.selected-correct { border-color: var(--correct); background: #052e16; color: #86efac; }
+  .mc-btn.selected-wrong { border-color: var(--wrong); background: #2d0707; color: #fca5a5; }
+  .mc-btn.reveal-correct { border-color: var(--correct); background: #052e16; color: #86efac; }
+
+  .btn-check {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    margin-bottom: 10px;
+  }
+  .btn-check:hover { opacity: 0.85; }
+  .btn-check:disabled { opacity: 0.4; cursor: default; }
+
+  .feedback {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    display: none;
+    line-height: 1.5;
+  }
+  .feedback.correct { background: #052e16; color: #86efac; border: 1px solid #166534; display: block; }
+  .feedback.wrong { background: #2d0707; color: #fca5a5; border: 1px solid #7f1d1d; display: block; }
+
+  .btn-next {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    display: none;
+    transition: opacity 0.2s;
+  }
+  .btn-next:hover { opacity: 0.85; }
+
+  /* RESULTS */
+  #results { display: none; max-width: 640px; margin: 0 auto; text-align: center; }
+  .score-circle {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 20px auto;
+  }
+  .result-msg {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .result-sub {
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+  .breakdown {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .breakdown h3 {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 12px;
+  }
+  .bd-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .bd-row:last-child { border-bottom: none; }
+  .bd-tag {
+    padding: 2px 8px;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .tag-ok { background: #14532d; color: #86efac; }
+  .tag-bad { background: #7f1d1d; color: #fca5a5; }
+
+  .btn-retry {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+  .btn-restart {
+    width: 100%;
+    padding: 11px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<h1>Will Future</h1>
+<p class="subtitle">Budúci čas s <em>will</em> – precvič si pravidlá!</p>
+
+<!-- EXPLAINER -->
+<div id="explainer">
+
+  <div class="rule-card">
+    <div class="rule-label pos">+ Kladná veta</div>
+    <div class="formula">S + will + V (základný tvar)</div>
+    <div class="example">→ <span>I will go to Thailand.</span></div>
+    <div class="example">→ <span>She will help you.</span></div>
+    <div class="tip">💡 Po <strong>will</strong> ide vždy <strong>základný tvar</strong> slovesa — bez -s, bez -ing, bez -ed!</div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-label neg">– Záporná veta</div>
+    <div class="formula">S + will not / won't + V</div>
+    <div class="example">→ <span>I will not go to Thailand.</span></div>
+    <div class="example">→ <span>He won't come tomorrow.</span></div>
+    <div class="tip">💡 <strong>will not</strong> = <strong>won't</strong> — obidve sú správne.</div>
+  </div>
+
+  <div class="rule-card">
+    <div class="rule-label que">? Otázka</div>
+    <div class="formula">Will + S + V + ...?</div>
+    <div class="example">→ <span>Will you go to Thailand?</span></div>
+    <div class="example">→ <span>Will she call me?</span></div>
+    <div class="tip">💡 V otázke dáme <strong>Will</strong> na začiatok — pred podmet!</div>
+  </div>
+
+  <button class="btn-start" onclick="startQuiz()">Rozumiem – začni kvíz! 🚀</button>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz">
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+  </div>
+  <div class="q-counter" id="qCounter">1 / 20</div>
+
+  <div class="q-card">
+    <div class="q-type-badge" id="qBadge">Doplň</div>
+    <div class="q-text" id="qText"></div>
+    <div id="qInputArea"></div>
+    <div class="feedback" id="feedback"></div>
+    <button class="btn-next" id="btnNext" onclick="nextQuestion()">Ďalej →</button>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="results">
+  <div class="score-circle" id="scoreCircle"></div>
+  <div class="result-msg" id="resultMsg"></div>
+  <div class="result-sub" id="resultSub"></div>
+  <div class="breakdown" id="breakdown"></div>
+  <button class="btn-retry" id="btnRetry" onclick="retryWrong()"></button>
+  <button class="btn-restart" onclick="restartAll()">Začať celý kvíz odznova</button>
+</div>
+
+<script>
+const ALL_QUESTIONS = [
+  // --- FILL IN: complete sentence with will ---
+  {
+    type: 'fill',
+    topic: 'Kladná veta',
+    instruction: 'Doplň správny tvar (will + sloveso):',
+    prompt: 'Ona príde zajtra. → She ___ come tomorrow.',
+    answer: ['will come'],
+    hint: 'will + základný tvar slovesa'
+  },
+  {
+    type: 'fill',
+    topic: 'Kladná veta',
+    instruction: 'Doplň správny tvar:',
+    prompt: 'Pomôžem ti. → I ___ help you.',
+    answer: ['will help'],
+    hint: 'will + help'
+  },
+  {
+    type: 'fill',
+    topic: 'Kladná veta',
+    instruction: 'Doplň správny tvar:',
+    prompt: 'Oni vyhrajú zápas. → They ___ win the match.',
+    answer: ['will win'],
+    hint: 'will + win'
+  },
+  {
+    type: 'fill',
+    topic: 'Záporná veta',
+    instruction: 'Doplň zápornú formu (will not / won\'t + sloveso):',
+    prompt: 'Nepôjdem do školy. → I ___ go to school.',
+    answer: ["will not go", "won't go"],
+    hint: "will not go  alebo  won't go"
+  },
+  {
+    type: 'fill',
+    topic: 'Záporná veta',
+    instruction: 'Doplň zápornú formu:',
+    prompt: 'On nebude jesť mäso. → He ___ eat meat.',
+    answer: ["will not eat", "won't eat"],
+    hint: "will not eat  alebo  won't eat"
+  },
+  {
+    type: 'fill',
+    topic: 'Záporná veta',
+    instruction: 'Doplň zápornú formu:',
+    prompt: 'Ona nezavolá. → She ___ call.',
+    answer: ["will not call", "won't call"],
+    hint: "will not call  alebo  won't call"
+  },
+  {
+    type: 'fill',
+    topic: 'Otázka',
+    instruction: 'Doplň začiatok otázky:',
+    prompt: '___ you help me? (Pomôžeš mi?)',
+    answer: ['will'],
+    hint: 'Will'
+  },
+  {
+    type: 'fill',
+    topic: 'Otázka',
+    instruction: 'Doplň začiatok otázky:',
+    prompt: '___ she come to the party? (Príde na oslavu?)',
+    answer: ['will'],
+    hint: 'Will'
+  },
+  {
+    type: 'fill',
+    topic: 'Otázka',
+    instruction: 'Celá otázka – napíš ju správne:',
+    prompt: '(they / travel / to London?) → ___',
+    answer: ['will they travel to london', 'will they travel to london?'],
+    hint: 'Will they travel to London?'
+  },
+
+  // --- MULTIPLE CHOICE ---
+  {
+    type: 'mc',
+    topic: 'Kladná veta',
+    instruction: 'Vyber správnu vetu:',
+    prompt: 'Ako povieme „Budem študovať angličtinu."?',
+    options: [
+      'I will studies English.',
+      'I will study English.',
+      'I will studying English.',
+      'I wills study English.'
+    ],
+    correct: 1,
+    hint: 'Po will ide vždy základný tvar – study.'
+  },
+  {
+    type: 'mc',
+    topic: 'Záporná veta',
+    instruction: 'Vyber správnu zápornú vetu:',
+    prompt: 'Ako povieme „On nebude spať."?',
+    options: [
+      "He won't sleeps.",
+      "He won't sleeping.",
+      "He won't sleep.",
+      "He not will sleep."
+    ],
+    correct: 2,
+    hint: "won't + základný tvar: sleep"
+  },
+  {
+    type: 'mc',
+    topic: 'Otázka',
+    instruction: 'Vyber správnu otázku:',
+    prompt: 'Ako sa opýtame „Pôjdete do Thajska?"?',
+    options: [
+      'You will go to Thailand?',
+      'Will you goes to Thailand?',
+      'Will you go to Thailand?',
+      'Do you will go to Thailand?'
+    ],
+    correct: 2,
+    hint: 'Will + podmет + základný tvar: Will you go...'
+  },
+  {
+    type: 'mc',
+    topic: 'Rozpoznanie',
+    instruction: 'Aký typ vety je toto?',
+    prompt: '"They won\'t be home tomorrow."',
+    options: ['Kladná veta', 'Záporná veta', 'Otázka'],
+    correct: 1,
+    hint: "won't = will not → záporná"
+  },
+  {
+    type: 'mc',
+    topic: 'Rozpoznanie',
+    instruction: 'Aký typ vety je toto?',
+    prompt: '"Will she play football?"',
+    options: ['Kladná veta', 'Záporná veta', 'Otázka'],
+    correct: 2,
+    hint: 'Začína Will → otázka'
+  },
+  {
+    type: 'mc',
+    topic: 'Rozpoznanie',
+    instruction: 'Aký typ vety je toto?',
+    prompt: '"I will call you later."',
+    options: ['Kladná veta', 'Záporná veta', 'Otázka'],
+    correct: 0,
+    hint: 'will + sloveso bez not → kladná'
+  },
+  {
+    type: 'mc',
+    topic: 'Záporná veta',
+    instruction: 'Ktorá forma je správna?',
+    prompt: '"will not" a "won\'t" sú:',
+    options: [
+      'Rozdielne veci – nemôžu sa zameniť',
+      'To isté – obidve znamenajú zápor',
+      '"won\'t" sa používa len v otázkach',
+      '"will not" sa nepoužíva v angličtine'
+    ],
+    correct: 1,
+    hint: "will not = won't, obe sú správne"
+  },
+  {
+    type: 'fill',
+    topic: 'Kladná veta',
+    instruction: 'Doplň správny tvar:',
+    prompt: 'Moja mama uvarí večeru. → My mum ___ dinner.',
+    answer: ['will cook', 'will make'],
+    hint: 'will + cook  alebo  will + make'
+  },
+  {
+    type: 'fill',
+    topic: 'Záporná veta',
+    instruction: 'Urob zápor z tejto vety: "We will go to the cinema."',
+    prompt: 'We ___ to the cinema.',
+    answer: ["will not go", "won't go"],
+    hint: "will not go  alebo  won't go"
+  },
+  {
+    type: 'fill',
+    topic: 'Otázka',
+    instruction: 'Urob otázku: "You will help me." → ___ ?',
+    prompt: '',
+    answer: ['will you help me', 'will you help me?'],
+    hint: 'Will you help me?'
+  },
+  {
+    type: 'mc',
+    topic: 'Kladná veta',
+    instruction: 'Vyber správne slovo do medzery:',
+    prompt: '"He will ___ his homework." (Spraví si domácu úlohu.)',
+    options: ['does', 'did', 'do', 'doing'],
+    correct: 2,
+    hint: 'Po will ide základný tvar: do'
+  }
+];
+
+function norm(s) {
+  return s.trim().toLowerCase()
+    .replace(/[''`]/g, "'")
+    .replace(/[?.!]/g, '')
+    .replace(/\s+/g, ' ');
+}
+
+let queue = [];
+let current = 0;
+let wrongIndexes = [];
+let totalInRound = 0;
+let correctInRound = 0;
+let topicStats = {};
+
+function startQuiz() {
+  queue = ALL_QUESTIONS.map((_, i) => i);
+  wrongIndexes = [];
+  topicStats = {};
+  ALL_QUESTIONS.forEach(q => {
+    if (!topicStats[q.topic]) topicStats[q.topic] = { correct: 0, total: 0 };
+  });
+  current = 0;
+  totalInRound = queue.length;
+  correctInRound = 0;
+  document.getElementById('explainer').style.display = 'none';
+  document.getElementById('quiz').style.display = 'block';
+  showQuestion();
+}
+
+function showQuestion() {
+  const idx = queue[current];
+  const q = ALL_QUESTIONS[idx];
+  const total = queue.length;
+
+  document.getElementById('progressBar').style.width = (current / total * 100) + '%';
+  document.getElementById('qCounter').textContent = (current + 1) + ' / ' + total;
+  document.getElementById('qBadge').textContent = q.topic;
+  document.getElementById('feedback').className = 'feedback';
+  document.getElementById('feedback').textContent = '';
+  document.getElementById('btnNext').style.display = 'none';
+
+  // Build question text
+  let txt = '';
+  if (q.instruction) txt += '<div style="font-size:0.82rem;color:var(--muted);margin-bottom:8px;">' + q.instruction + '</div>';
+  if (q.prompt) txt += q.prompt;
+  document.getElementById('qText').innerHTML = txt;
+
+  // Build input area
+  const area = document.getElementById('qInputArea');
+  area.innerHTML = '';
+
+  if (q.type === 'fill') {
+    const inp = document.createElement('input');
+    inp.type = 'text';
+    inp.className = 'fill-input';
+    inp.placeholder = 'Napíš odpoveď…';
+    inp.id = 'fillInput';
+    inp.autocomplete = 'off';
+    inp.autocorrect = 'off';
+    inp.autocapitalize = 'none';
+    inp.spellcheck = false;
+    area.appendChild(inp);
+
+    const btn = document.createElement('button');
+    btn.className = 'btn-check';
+    btn.textContent = 'Skontrolovať';
+    btn.id = 'btnCheck';
+    btn.onclick = checkFill;
+    area.appendChild(btn);
+
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') checkFill(); });
+    setTimeout(() => inp.focus(), 100);
+
+  } else {
+    const wrap = document.createElement('div');
+    wrap.className = 'mc-options';
+    wrap.id = 'mcOptions';
+    q.options.forEach((opt, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'mc-btn';
+      btn.textContent = opt;
+      btn.dataset.idx = i;
+      btn.onclick = () => checkMC(i);
+      wrap.appendChild(btn);
+    });
+    area.appendChild(wrap);
+  }
+}
+
+function checkFill() {
+  const idx = queue[current];
+  const q = ALL_QUESTIONS[idx];
+  const inp = document.getElementById('fillInput');
+  const val = norm(inp.value);
+  const correct = q.answer.some(a => norm(a) === val);
+
+  inp.disabled = true;
+  document.getElementById('btnCheck').disabled = true;
+
+  recordResult(idx, correct);
+
+  const fb = document.getElementById('feedback');
+  if (correct) {
+    inp.classList.add('correct-input');
+    fb.className = 'feedback correct';
+    fb.textContent = '✅ Správne! Výborne!';
+  } else {
+    inp.classList.add('wrong-input');
+    fb.className = 'feedback wrong';
+    fb.textContent = '❌ Nie celkom. Správna odpoveď: ' + q.answer[0] + '  |  Nápoveda: ' + q.hint;
+  }
+  document.getElementById('btnNext').style.display = 'block';
+}
+
+function checkMC(chosen) {
+  const idx = queue[current];
+  const q = ALL_QUESTIONS[idx];
+  const btns = document.querySelectorAll('.mc-btn');
+  btns.forEach(b => b.disabled = true);
+
+  const correct = chosen === q.correct;
+  recordResult(idx, correct);
+
+  btns[chosen].classList.add(correct ? 'selected-correct' : 'selected-wrong');
+  if (!correct) btns[q.correct].classList.add('reveal-correct');
+
+  const fb = document.getElementById('feedback');
+  if (correct) {
+    fb.className = 'feedback correct';
+    fb.textContent = '✅ Správne!';
+  } else {
+    fb.className = 'feedback wrong';
+    fb.textContent = '❌ Nesprávne. ' + q.hint;
+  }
+  document.getElementById('btnNext').style.display = 'block';
+}
+
+function recordResult(idx, correct) {
+  const q = ALL_QUESTIONS[idx];
+  topicStats[q.topic].total++;
+  if (correct) {
+    topicStats[q.topic].correct++;
+    correctInRound++;
+  } else {
+    if (!wrongIndexes.includes(idx)) wrongIndexes.push(idx);
+  }
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= queue.length) {
+    showResults();
+  } else {
+    showQuestion();
+  }
+}
+
+function showResults() {
+  document.getElementById('quiz').style.display = 'none';
+  document.getElementById('results').style.display = 'block';
+
+  const total = ALL_QUESTIONS.length;
+  const correct = total - wrongIndexes.length;
+  const pct = Math.round(correct / total * 100);
+
+  document.getElementById('scoreCircle').textContent = pct + '%';
+
+  let msg, sub;
+  if (pct === 100) {
+    msg = '🎉 Perfektné! Všetko správne!';
+    sub = 'Si šikovná – will future ovládaš na jednotku!';
+  } else if (pct >= 80) {
+    msg = '👍 Skoro perfektné!';
+    sub = 'Malé chybičky – opakujeme ich hneď.';
+  } else if (pct >= 60) {
+    msg = '💪 Dobre, ale ešte treba precvičiť.';
+    sub = 'Opakujeme nesprávne otázky.';
+  } else {
+    msg = '📚 Ešte to chce tréning!';
+    sub = 'Nevadí – opakujeme, kým to bude fajn.';
+  }
+  document.getElementById('resultMsg').textContent = msg;
+  document.getElementById('resultSub').textContent = sub;
+
+  // Breakdown
+  let bd = '<div class="breakdown"><h3>Výsledky podľa témy</h3>';
+  for (const [topic, stat] of Object.entries(topicStats)) {
+    const ok = stat.correct === stat.total;
+    bd += `<div class="bd-row">
+      <span>${topic}</span>
+      <span><span class="bd-tag ${ok ? 'tag-ok' : 'tag-bad'}">${stat.correct}/${stat.total}</span></span>
+    </div>`;
+  }
+  bd += '</div>';
+  document.getElementById('breakdown').outerHTML = bd;
+
+  const retryBtn = document.getElementById('btnRetry');
+  if (wrongIndexes.length > 0) {
+    retryBtn.style.display = 'block';
+    retryBtn.textContent = `Zopakovať ${wrongIndexes.length} nesprávnych otázok`;
+  } else {
+    retryBtn.style.display = 'none';
+  }
+}
+
+function retryWrong() {
+  queue = [...wrongIndexes];
+  wrongIndexes = [];
+  current = 0;
+  correctInRound = 0;
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('quiz').style.display = 'block';
+  showQuestion();
+}
+
+function restartAll() {
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('explainer').style.display = 'block';
+  wrongIndexes = [];
+}
+</script>
+</body>
+</html>
