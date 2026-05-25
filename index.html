@@ -63,7 +63,6 @@
   .rule-label.pos { background: #14532d; color: #86efac; }
   .rule-label.neg { background: #7f1d1d; color: #fca5a5; }
   .rule-label.que { background: #1e3a5f; color: #93c5fd; }
-
   .formula {
     font-family: 'Courier New', monospace;
     font-size: 1rem;
@@ -71,11 +70,7 @@
     color: #f1f5f9;
     margin-bottom: 8px;
   }
-  .example {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 4px;
-  }
+  .example { font-size: 0.9rem; color: var(--muted); margin-bottom: 4px; }
   .example span { color: var(--accent2); font-style: italic; }
   .tip {
     font-size: 0.82rem;
@@ -85,7 +80,6 @@
     background: #1e1b4b;
     border-radius: 8px;
   }
-
   .btn-start {
     display: block;
     width: 100%;
@@ -99,9 +93,7 @@
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    transition: opacity 0.2s;
   }
-  .btn-start:hover { opacity: 0.88; }
 
   /* QUIZ */
   #quiz { display: none; max-width: 640px; margin: 0 auto; }
@@ -125,7 +117,6 @@
     margin-top: -14px;
     margin-bottom: 16px;
   }
-
   .q-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -140,38 +131,42 @@
     color: var(--muted);
     margin-bottom: 10px;
   }
-  .q-text {
-    font-size: 1.05rem;
-    font-weight: 600;
-    line-height: 1.5;
-    margin-bottom: 16px;
-    color: #f1f5f9;
-  }
-  .q-text .blank {
-    display: inline-block;
-    border-bottom: 2px solid var(--accent2);
-    min-width: 100px;
-    height: 22px;
-    vertical-align: bottom;
+  .q-instruction {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 10px;
   }
 
-  /* fill-in input */
-  .fill-input {
-    width: 100%;
+  /* Sentence with inline blanks */
+  .sentence-wrap {
+    font-size: 1.05rem;
+    font-weight: 600;
+    line-height: 2.2;
+    color: #f1f5f9;
+    margin-bottom: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+  .word-input {
     background: #0f0f1a;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 11px 14px;
+    border: 2px solid var(--accent2);
+    border-radius: 8px;
+    padding: 4px 10px;
     color: var(--text);
     font-size: 1rem;
     font-family: inherit;
+    font-weight: 600;
     outline: none;
-    transition: border-color 0.2s;
-    margin-bottom: 12px;
+    width: 110px;
+    text-align: center;
+    transition: border-color 0.2s, background 0.2s;
   }
-  .fill-input:focus { border-color: var(--accent2); }
-  .fill-input.correct-input { border-color: var(--correct); background: #052e16; }
-  .fill-input.wrong-input { border-color: var(--wrong); background: #2d0707; }
+  .word-input:focus { border-color: #a78bfa; }
+  .word-input.correct-input { border-color: var(--correct); background: #052e16; color: #86efac; }
+  .word-input.wrong-input { border-color: var(--wrong); background: #2d0707; color: #fca5a5; }
+  .word-input.wide { width: 140px; }
 
   /* multiple choice */
   .mc-options { display: flex; flex-direction: column; gap: 9px; margin-bottom: 12px; }
@@ -202,10 +197,8 @@
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: opacity 0.2s;
     margin-bottom: 10px;
   }
-  .btn-check:hover { opacity: 0.85; }
   .btn-check:disabled { opacity: 0.4; cursor: default; }
 
   .feedback {
@@ -230,34 +223,20 @@
     border-radius: 10px;
     cursor: pointer;
     display: none;
-    transition: opacity 0.2s;
   }
-  .btn-next:hover { opacity: 0.85; }
 
   /* RESULTS */
   #results { display: none; max-width: 640px; margin: 0 auto; text-align: center; }
   .score-circle {
-    width: 110px;
-    height: 110px;
+    width: 110px; height: 110px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; font-weight: 800;
     margin: 20px auto;
   }
-  .result-msg {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  .result-sub {
-    font-size: 0.9rem;
-    color: var(--muted);
-    margin-bottom: 24px;
-  }
+  .result-msg { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+  .result-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; }
   .breakdown {
     background: var(--card);
     border: 1px solid var(--border);
@@ -267,51 +246,27 @@
     text-align: left;
   }
   .breakdown h3 {
-    font-size: 0.85rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    margin-bottom: 12px;
+    font-size: 0.85rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px;
   }
   .bd-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 7px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.88rem;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem;
   }
   .bd-row:last-child { border-bottom: none; }
-  .bd-tag {
-    padding: 2px 8px;
-    border-radius: 99px;
-    font-size: 0.75rem;
-    font-weight: 700;
-  }
+  .bd-tag { padding: 2px 8px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; }
   .tag-ok { background: #14532d; color: #86efac; }
   .tag-bad { background: #7f1d1d; color: #fca5a5; }
-
   .btn-retry {
-    width: 100%;
-    padding: 13px;
+    width: 100%; padding: 13px;
     background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff;
-    font-size: 1.05rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
+    color: #fff; font-size: 1.05rem; font-weight: 700;
+    border: none; border-radius: 12px; cursor: pointer;
   }
   .btn-restart {
-    width: 100%;
-    padding: 11px;
-    background: transparent;
-    color: var(--muted);
-    font-size: 0.9rem;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    cursor: pointer;
-    margin-top: 10px;
+    width: 100%; padding: 11px;
+    background: transparent; color: var(--muted); font-size: 0.9rem;
+    border: 1px solid var(--border); border-radius: 12px; cursor: pointer; margin-top: 10px;
   }
 </style>
 </head>
@@ -322,7 +277,6 @@
 
 <!-- EXPLAINER -->
 <div id="explainer">
-
   <div class="rule-card">
     <div class="rule-label pos">+ Kladná veta</div>
     <div class="formula">S + will + V (základný tvar)</div>
@@ -330,7 +284,6 @@
     <div class="example">→ <span>She will help you.</span></div>
     <div class="tip">💡 Po <strong>will</strong> ide vždy <strong>základný tvar</strong> slovesa — bez -s, bez -ing, bez -ed!</div>
   </div>
-
   <div class="rule-card">
     <div class="rule-label neg">– Záporná veta</div>
     <div class="formula">S + will not / won't + V</div>
@@ -338,7 +291,6 @@
     <div class="example">→ <span>He won't come tomorrow.</span></div>
     <div class="tip">💡 <strong>will not</strong> = <strong>won't</strong> — obidve sú správne.</div>
   </div>
-
   <div class="rule-card">
     <div class="rule-label que">? Otázka</div>
     <div class="formula">Will + S + V + ...?</div>
@@ -346,7 +298,6 @@
     <div class="example">→ <span>Will she call me?</span></div>
     <div class="tip">💡 V otázke dáme <strong>Will</strong> na začiatok — pred podmet!</div>
   </div>
-
   <button class="btn-start" onclick="startQuiz()">Rozumiem – začni kvíz! 🚀</button>
 </div>
 
@@ -356,10 +307,9 @@
     <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
   </div>
   <div class="q-counter" id="qCounter">1 / 20</div>
-
   <div class="q-card">
-    <div class="q-type-badge" id="qBadge">Doplň</div>
-    <div class="q-text" id="qText"></div>
+    <div class="q-type-badge" id="qBadge"></div>
+    <div class="q-instruction" id="qInstruction"></div>
     <div id="qInputArea"></div>
     <div class="feedback" id="feedback"></div>
     <button class="btn-next" id="btnNext" onclick="nextQuestion()">Ďalej →</button>
@@ -377,82 +327,150 @@
 </div>
 
 <script>
+// Each fill question has:
+//   parts: array of {text: '...', blank: false} or {blank: true, answer: ['word1','word2'...], width: 'normal'|'wide'}
+// MC questions unchanged.
+
 const ALL_QUESTIONS = [
-  // --- FILL IN: complete sentence with will ---
+  // ---- KLADNÉ VETY ----
   {
     type: 'fill',
     topic: 'Kladná veta',
-    instruction: 'Doplň správny tvar (will + sloveso):',
-    prompt: 'Ona príde zajtra. → She ___ come tomorrow.',
-    answer: ['will come'],
-    hint: 'will + základný tvar slovesa'
+    instruction: 'Doplň správne slová do políčok:',
+    parts: [
+      {text: 'She'},
+      {blank: true, answer: ['will'], label: 'will'},
+      {blank: true, answer: ['come'], label: 'sloveso'},
+      {text: 'tomorrow.'}
+    ],
+    hint: 'will + come'
   },
   {
     type: 'fill',
     topic: 'Kladná veta',
-    instruction: 'Doplň správny tvar:',
-    prompt: 'Pomôžem ti. → I ___ help you.',
-    answer: ['will help'],
+    instruction: 'Doplň správne slová do políčok:',
+    parts: [
+      {text: 'I'},
+      {blank: true, answer: ['will'], label: 'will'},
+      {blank: true, answer: ['help'], label: 'sloveso'},
+      {text: 'you.'}
+    ],
     hint: 'will + help'
   },
   {
     type: 'fill',
     topic: 'Kladná veta',
-    instruction: 'Doplň správny tvar:',
-    prompt: 'Oni vyhrajú zápas. → They ___ win the match.',
-    answer: ['will win'],
+    instruction: 'Doplň správne slová do políčok:',
+    parts: [
+      {text: 'They'},
+      {blank: true, answer: ['will'], label: 'will'},
+      {blank: true, answer: ['win'], label: 'sloveso'},
+      {text: 'the match.'}
+    ],
     hint: 'will + win'
   },
   {
     type: 'fill',
-    topic: 'Záporná veta',
-    instruction: 'Doplň zápornú formu (will not / won\'t + sloveso):',
-    prompt: 'Nepôjdem do školy. → I ___ go to school.',
-    answer: ["will not go", "won't go"],
-    hint: "will not go  alebo  won't go"
-  },
-  {
-    type: 'fill',
-    topic: 'Záporná veta',
-    instruction: 'Doplň zápornú formu:',
-    prompt: 'On nebude jesť mäso. → He ___ eat meat.',
-    answer: ["will not eat", "won't eat"],
-    hint: "will not eat  alebo  won't eat"
-  },
-  {
-    type: 'fill',
-    topic: 'Záporná veta',
-    instruction: 'Doplň zápornú formu:',
-    prompt: 'Ona nezavolá. → She ___ call.',
-    answer: ["will not call", "won't call"],
-    hint: "will not call  alebo  won't call"
-  },
-  {
-    type: 'fill',
-    topic: 'Otázka',
-    instruction: 'Doplň začiatok otázky:',
-    prompt: '___ you help me? (Pomôžeš mi?)',
-    answer: ['will'],
-    hint: 'Will'
-  },
-  {
-    type: 'fill',
-    topic: 'Otázka',
-    instruction: 'Doplň začiatok otázky:',
-    prompt: '___ she come to the party? (Príde na oslavu?)',
-    answer: ['will'],
-    hint: 'Will'
-  },
-  {
-    type: 'fill',
-    topic: 'Otázka',
-    instruction: 'Celá otázka – napíš ju správne:',
-    prompt: '(they / travel / to London?) → ___',
-    answer: ['will they travel to london', 'will they travel to london?'],
-    hint: 'Will they travel to London?'
+    topic: 'Kladná veta',
+    instruction: 'Doplň správne slová do políčok:',
+    parts: [
+      {text: 'My mum'},
+      {blank: true, answer: ['will'], label: 'will'},
+      {blank: true, answer: ['cook', 'make'], label: 'sloveso'},
+      {text: 'dinner.'}
+    ],
+    hint: 'will + cook  (alebo make)'
   },
 
-  // --- MULTIPLE CHOICE ---
+  // ---- ZÁPORNÉ VETY ----
+  {
+    type: 'fill',
+    topic: 'Záporná veta',
+    instruction: 'Doplň zápornú formu (will not alebo won\'t + sloveso):',
+    parts: [
+      {text: 'I'},
+      {blank: true, answer: ["will not", "won't"], label: 'will not / won\'t', wide: true},
+      {blank: true, answer: ['go'], label: 'sloveso'},
+      {text: 'to school.'}
+    ],
+    hint: "will not  alebo  won't  +  go"
+  },
+  {
+    type: 'fill',
+    topic: 'Záporná veta',
+    instruction: 'Doplň zápornú formu:',
+    parts: [
+      {text: 'He'},
+      {blank: true, answer: ["will not", "won't"], label: 'will not / won\'t', wide: true},
+      {blank: true, answer: ['eat'], label: 'sloveso'},
+      {text: 'meat.'}
+    ],
+    hint: "will not  alebo  won't  +  eat"
+  },
+  {
+    type: 'fill',
+    topic: 'Záporná veta',
+    instruction: 'Doplň zápornú formu:',
+    parts: [
+      {text: 'She'},
+      {blank: true, answer: ["will not", "won't"], label: 'will not / won\'t', wide: true},
+      {blank: true, answer: ['call'], label: 'sloveso'},
+      {text: '.'}
+    ],
+    hint: "will not  alebo  won't  +  call"
+  },
+  {
+    type: 'fill',
+    topic: 'Záporná veta',
+    instruction: 'Doplň zápornú formu:',
+    parts: [
+      {text: 'We'},
+      {blank: true, answer: ["will not", "won't"], label: 'will not / won\'t', wide: true},
+      {blank: true, answer: ['go'], label: 'sloveso'},
+      {text: 'to the cinema.'}
+    ],
+    hint: "will not  alebo  won't  +  go"
+  },
+
+  // ---- OTÁZKY ----
+  {
+    type: 'fill',
+    topic: 'Otázka',
+    instruction: 'Doplň správne slová — otázka začína na Will:',
+    parts: [
+      {blank: true, answer: ['will'], label: 'Will'},
+      {text: 'you'},
+      {blank: true, answer: ['help'], label: 'sloveso'},
+      {text: 'me?'}
+    ],
+    hint: 'Will + you + help'
+  },
+  {
+    type: 'fill',
+    topic: 'Otázka',
+    instruction: 'Doplň správne slová:',
+    parts: [
+      {blank: true, answer: ['will'], label: 'Will'},
+      {text: 'she'},
+      {blank: true, answer: ['come'], label: 'sloveso'},
+      {text: 'to the party?'}
+    ],
+    hint: 'Will + she + come'
+  },
+  {
+    type: 'fill',
+    topic: 'Otázka',
+    instruction: 'Doplň správne slová:',
+    parts: [
+      {blank: true, answer: ['will'], label: 'Will'},
+      {text: 'they'},
+      {blank: true, answer: ['travel'], label: 'sloveso'},
+      {text: 'to London?'}
+    ],
+    hint: 'Will + they + travel'
+  },
+
+  // ---- MULTIPLE CHOICE ----
   {
     type: 'mc',
     topic: 'Kladná veta',
@@ -465,7 +483,7 @@ const ALL_QUESTIONS = [
       'I wills study English.'
     ],
     correct: 1,
-    hint: 'Po will ide vždy základný tvar – study.'
+    hint: 'Po will ide vždy základný tvar – study, nie studies.'
   },
   {
     type: 'mc',
@@ -493,7 +511,7 @@ const ALL_QUESTIONS = [
       'Do you will go to Thailand?'
     ],
     correct: 2,
-    hint: 'Will + podmет + základný tvar: Will you go...'
+    hint: 'Will + podmet + základný tvar: Will you go...'
   },
   {
     type: 'mc',
@@ -528,7 +546,7 @@ const ALL_QUESTIONS = [
     instruction: 'Ktorá forma je správna?',
     prompt: '"will not" a "won\'t" sú:',
     options: [
-      'Rozdielne veci – nemôžu sa zameniť',
+      'Rozdielne – nemôžu sa zameniť',
       'To isté – obidve znamenajú zápor',
       '"won\'t" sa používa len v otázkach',
       '"will not" sa nepoužíva v angličtine'
@@ -537,43 +555,33 @@ const ALL_QUESTIONS = [
     hint: "will not = won't, obe sú správne"
   },
   {
-    type: 'fill',
-    topic: 'Kladná veta',
-    instruction: 'Doplň správny tvar:',
-    prompt: 'Moja mama uvarí večeru. → My mum ___ dinner.',
-    answer: ['will cook', 'will make'],
-    hint: 'will + cook  alebo  will + make'
-  },
-  {
-    type: 'fill',
-    topic: 'Záporná veta',
-    instruction: 'Urob zápor z tejto vety: "We will go to the cinema."',
-    prompt: 'We ___ to the cinema.',
-    answer: ["will not go", "won't go"],
-    hint: "will not go  alebo  won't go"
-  },
-  {
-    type: 'fill',
-    topic: 'Otázka',
-    instruction: 'Urob otázku: "You will help me." → ___ ?',
-    prompt: '',
-    answer: ['will you help me', 'will you help me?'],
-    hint: 'Will you help me?'
-  },
-  {
     type: 'mc',
     topic: 'Kladná veta',
-    instruction: 'Vyber správne slovo do medzery:',
-    prompt: '"He will ___ his homework." (Spraví si domácu úlohu.)',
+    instruction: 'Vyber správne slovo:',
+    prompt: '"He will ___ his homework."',
     options: ['does', 'did', 'do', 'doing'],
     correct: 2,
     hint: 'Po will ide základný tvar: do'
+  },
+  {
+    type: 'mc',
+    topic: 'Otázka',
+    instruction: 'Vyber správnu otázku:',
+    prompt: 'Ako sa opýtame „Zavolá mi?"?',
+    options: [
+      'She will call me?',
+      'Will she calls me?',
+      'Will she call me?',
+      'Does she will call me?'
+    ],
+    correct: 2,
+    hint: 'Will + she + call (základný tvar)'
   }
 ];
 
 function norm(s) {
   return s.trim().toLowerCase()
-    .replace(/[''`]/g, "'")
+    .replace(/[''`\u2018\u2019]/g, "'")
     .replace(/[?.!]/g, '')
     .replace(/\s+/g, ' ');
 }
@@ -581,8 +589,6 @@ function norm(s) {
 let queue = [];
 let current = 0;
 let wrongIndexes = [];
-let totalInRound = 0;
-let correctInRound = 0;
 let topicStats = {};
 
 function startQuiz() {
@@ -593,8 +599,6 @@ function startQuiz() {
     if (!topicStats[q.topic]) topicStats[q.topic] = { correct: 0, total: 0 };
   });
   current = 0;
-  totalInRound = queue.length;
-  correctInRound = 0;
   document.getElementById('explainer').style.display = 'none';
   document.getElementById('quiz').style.display = 'block';
   showQuestion();
@@ -608,31 +612,40 @@ function showQuestion() {
   document.getElementById('progressBar').style.width = (current / total * 100) + '%';
   document.getElementById('qCounter').textContent = (current + 1) + ' / ' + total;
   document.getElementById('qBadge').textContent = q.topic;
+  document.getElementById('qInstruction').textContent = q.instruction || '';
   document.getElementById('feedback').className = 'feedback';
   document.getElementById('feedback').textContent = '';
   document.getElementById('btnNext').style.display = 'none';
 
-  // Build question text
-  let txt = '';
-  if (q.instruction) txt += '<div style="font-size:0.82rem;color:var(--muted);margin-bottom:8px;">' + q.instruction + '</div>';
-  if (q.prompt) txt += q.prompt;
-  document.getElementById('qText').innerHTML = txt;
-
-  // Build input area
   const area = document.getElementById('qInputArea');
   area.innerHTML = '';
 
   if (q.type === 'fill') {
-    const inp = document.createElement('input');
-    inp.type = 'text';
-    inp.className = 'fill-input';
-    inp.placeholder = 'Napíš odpoveď…';
-    inp.id = 'fillInput';
-    inp.autocomplete = 'off';
-    inp.autocorrect = 'off';
-    inp.autocapitalize = 'none';
-    inp.spellcheck = false;
-    area.appendChild(inp);
+    // Build sentence with inline input fields
+    const sentWrap = document.createElement('div');
+    sentWrap.className = 'sentence-wrap';
+
+    let blankIndex = 0;
+    q.parts.forEach(part => {
+      if (!part.blank) {
+        const span = document.createElement('span');
+        span.textContent = part.text;
+        sentWrap.appendChild(span);
+      } else {
+        const inp = document.createElement('input');
+        inp.type = 'text';
+        inp.className = 'word-input' + (part.wide ? ' wide' : '');
+        inp.placeholder = part.label || '...';
+        inp.autocomplete = 'off';
+        inp.autocorrect = 'off';
+        inp.autocapitalize = 'none';
+        inp.spellcheck = false;
+        inp.dataset.blankIndex = blankIndex;
+        sentWrap.appendChild(inp);
+        blankIndex++;
+      }
+    });
+    area.appendChild(sentWrap);
 
     const btn = document.createElement('button');
     btn.className = 'btn-check';
@@ -641,18 +654,32 @@ function showQuestion() {
     btn.onclick = checkFill;
     area.appendChild(btn);
 
-    inp.addEventListener('keydown', e => { if (e.key === 'Enter') checkFill(); });
-    setTimeout(() => inp.focus(), 100);
+    // Enter key on last input triggers check
+    const inputs = sentWrap.querySelectorAll('input');
+    inputs.forEach((inp, i) => {
+      inp.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          if (i < inputs.length - 1) inputs[i+1].focus();
+          else checkFill();
+        }
+      });
+    });
+    if (inputs.length > 0) setTimeout(() => inputs[0].focus(), 100);
 
   } else {
+    // MC
+    if (q.prompt) {
+      const p = document.createElement('div');
+      p.style.cssText = 'font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:14px;';
+      p.textContent = q.prompt;
+      area.appendChild(p);
+    }
     const wrap = document.createElement('div');
     wrap.className = 'mc-options';
-    wrap.id = 'mcOptions';
     q.options.forEach((opt, i) => {
       const btn = document.createElement('button');
       btn.className = 'mc-btn';
       btn.textContent = opt;
-      btn.dataset.idx = i;
       btn.onclick = () => checkMC(i);
       wrap.appendChild(btn);
     });
@@ -663,24 +690,33 @@ function showQuestion() {
 function checkFill() {
   const idx = queue[current];
   const q = ALL_QUESTIONS[idx];
-  const inp = document.getElementById('fillInput');
-  const val = norm(inp.value);
-  const correct = q.answer.some(a => norm(a) === val);
-
-  inp.disabled = true;
+  const inputs = document.querySelectorAll('.word-input');
+  inputs.forEach(inp => inp.disabled = true);
   document.getElementById('btnCheck').disabled = true;
 
-  recordResult(idx, correct);
+  let allCorrect = true;
+  let blankIdx = 0;
+
+  q.parts.forEach(part => {
+    if (!part.blank) return;
+    const inp = inputs[blankIdx];
+    const val = norm(inp.value);
+    const accepted = part.answer.map(a => norm(a));
+    const ok = accepted.includes(val);
+    inp.classList.add(ok ? 'correct-input' : 'wrong-input');
+    if (!ok) allCorrect = false;
+    blankIdx++;
+  });
+
+  recordResult(idx, allCorrect);
 
   const fb = document.getElementById('feedback');
-  if (correct) {
-    inp.classList.add('correct-input');
+  if (allCorrect) {
     fb.className = 'feedback correct';
     fb.textContent = '✅ Správne! Výborne!';
   } else {
-    inp.classList.add('wrong-input');
     fb.className = 'feedback wrong';
-    fb.textContent = '❌ Nie celkom. Správna odpoveď: ' + q.answer[0] + '  |  Nápoveda: ' + q.hint;
+    fb.textContent = '❌ Nie celkom. Správna odpoveď: ' + q.hint;
   }
   document.getElementById('btnNext').style.display = 'block';
 }
@@ -690,21 +726,13 @@ function checkMC(chosen) {
   const q = ALL_QUESTIONS[idx];
   const btns = document.querySelectorAll('.mc-btn');
   btns.forEach(b => b.disabled = true);
-
   const correct = chosen === q.correct;
   recordResult(idx, correct);
-
   btns[chosen].classList.add(correct ? 'selected-correct' : 'selected-wrong');
   if (!correct) btns[q.correct].classList.add('reveal-correct');
-
   const fb = document.getElementById('feedback');
-  if (correct) {
-    fb.className = 'feedback correct';
-    fb.textContent = '✅ Správne!';
-  } else {
-    fb.className = 'feedback wrong';
-    fb.textContent = '❌ Nesprávne. ' + q.hint;
-  }
+  fb.className = correct ? 'feedback correct' : 'feedback wrong';
+  fb.textContent = correct ? '✅ Správne!' : '❌ Nesprávne. ' + q.hint;
   document.getElementById('btnNext').style.display = 'block';
 }
 
@@ -713,7 +741,6 @@ function recordResult(idx, correct) {
   topicStats[q.topic].total++;
   if (correct) {
     topicStats[q.topic].correct++;
-    correctInRound++;
   } else {
     if (!wrongIndexes.includes(idx)) wrongIndexes.push(idx);
   }
@@ -721,11 +748,8 @@ function recordResult(idx, correct) {
 
 function nextQuestion() {
   current++;
-  if (current >= queue.length) {
-    showResults();
-  } else {
-    showQuestion();
-  }
+  if (current >= queue.length) showResults();
+  else showQuestion();
 }
 
 function showResults() {
@@ -739,30 +763,18 @@ function showResults() {
   document.getElementById('scoreCircle').textContent = pct + '%';
 
   let msg, sub;
-  if (pct === 100) {
-    msg = '🎉 Perfektné! Všetko správne!';
-    sub = 'Si šikovná – will future ovládaš na jednotku!';
-  } else if (pct >= 80) {
-    msg = '👍 Skoro perfektné!';
-    sub = 'Malé chybičky – opakujeme ich hneď.';
-  } else if (pct >= 60) {
-    msg = '💪 Dobre, ale ešte treba precvičiť.';
-    sub = 'Opakujeme nesprávne otázky.';
-  } else {
-    msg = '📚 Ešte to chce tréning!';
-    sub = 'Nevadí – opakujeme, kým to bude fajn.';
-  }
+  if (pct === 100) { msg = '🎉 Perfektné! Všetko správne!'; sub = 'Will future ovládaš na jednotku!'; }
+  else if (pct >= 80) { msg = '👍 Skoro perfektné!'; sub = 'Malé chybičky – opakujeme ich hneď.'; }
+  else if (pct >= 60) { msg = '💪 Dobre, ale ešte treba precvičiť.'; sub = 'Opakujeme nesprávne otázky.'; }
+  else { msg = '📚 Ešte to chce tréning!'; sub = 'Nevadí – opakujeme, kým to bude fajn.'; }
+
   document.getElementById('resultMsg').textContent = msg;
   document.getElementById('resultSub').textContent = sub;
 
-  // Breakdown
   let bd = '<div class="breakdown"><h3>Výsledky podľa témy</h3>';
   for (const [topic, stat] of Object.entries(topicStats)) {
     const ok = stat.correct === stat.total;
-    bd += `<div class="bd-row">
-      <span>${topic}</span>
-      <span><span class="bd-tag ${ok ? 'tag-ok' : 'tag-bad'}">${stat.correct}/${stat.total}</span></span>
-    </div>`;
+    bd += `<div class="bd-row"><span>${topic}</span><span class="bd-tag ${ok ? 'tag-ok' : 'tag-bad'}">${stat.correct}/${stat.total}</span></div>`;
   }
   bd += '</div>';
   document.getElementById('breakdown').outerHTML = bd;
@@ -770,7 +782,7 @@ function showResults() {
   const retryBtn = document.getElementById('btnRetry');
   if (wrongIndexes.length > 0) {
     retryBtn.style.display = 'block';
-    retryBtn.textContent = `Zopakovať ${wrongIndexes.length} nesprávnych otázok`;
+    retryBtn.textContent = 'Zopakovať ' + wrongIndexes.length + ' nesprávnych otázok';
   } else {
     retryBtn.style.display = 'none';
   }
@@ -780,7 +792,6 @@ function retryWrong() {
   queue = [...wrongIndexes];
   wrongIndexes = [];
   current = 0;
-  correctInRound = 0;
   document.getElementById('results').style.display = 'none';
   document.getElementById('quiz').style.display = 'block';
   showQuestion();
