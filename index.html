@@ -34,240 +34,56 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .subtitle {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.9rem;
-    margin-bottom: 24px;
-  }
-
-  /* EXPLAINER */
+  .subtitle { text-align: center; color: var(--muted); font-size: 0.9rem; margin-bottom: 24px; }
   #explainer { max-width: 640px; margin: 0 auto; }
-  .rule-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 18px 20px;
-    margin-bottom: 14px;
-  }
-  .rule-label {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-  }
+  .rule-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; margin-bottom: 14px; }
+  .rule-label { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; margin-bottom: 10px; }
   .rule-label.pos { background: #14532d; color: #86efac; }
   .rule-label.neg { background: #7f1d1d; color: #fca5a5; }
   .rule-label.que { background: #1e3a5f; color: #93c5fd; }
-  .formula {
-    font-family: 'Courier New', monospace;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #f1f5f9;
-    margin-bottom: 8px;
-  }
+  .formula { font-family: 'Courier New', monospace; font-size: 1rem; font-weight: 700; color: #f1f5f9; margin-bottom: 8px; }
   .example { font-size: 0.9rem; color: var(--muted); margin-bottom: 4px; }
   .example span { color: var(--accent2); font-style: italic; }
-  .tip {
-    font-size: 0.82rem;
-    color: #a78bfa;
-    margin-top: 8px;
-    padding: 6px 10px;
-    background: #1e1b4b;
-    border-radius: 8px;
-  }
-  .btn-start {
-    display: block;
-    width: 100%;
-    max-width: 640px;
-    margin: 20px auto 0;
-    padding: 14px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff;
-    font-size: 1.05rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-  }
-
-  /* QUIZ */
+  .tip { font-size: 0.82rem; color: #a78bfa; margin-top: 8px; padding: 6px 10px; background: #1e1b4b; border-radius: 8px; }
+  .btn-start { display: block; width: 100%; max-width: 640px; margin: 20px auto 0; padding: 14px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; font-size: 1.05rem; font-weight: 700; border: none; border-radius: 12px; cursor: pointer; }
   #quiz { display: none; max-width: 640px; margin: 0 auto; }
-  .progress-bar-wrap {
-    background: var(--border);
-    border-radius: 99px;
-    height: 6px;
-    margin-bottom: 20px;
-    overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    border-radius: 99px;
-    transition: width 0.4s;
-  }
-  .q-counter {
-    text-align: right;
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: -14px;
-    margin-bottom: 16px;
-  }
-  .q-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 22px 20px;
-  }
-  .q-type-badge {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-  .q-instruction {
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
-
-  /* Sentence with inline blanks */
-  .sentence-wrap {
-    font-size: 1.05rem;
-    font-weight: 600;
-    line-height: 2.2;
-    color: #f1f5f9;
-    margin-bottom: 16px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-  }
-  .word-input {
-    background: #0f0f1a;
-    border: 2px solid var(--accent2);
-    border-radius: 8px;
-    padding: 4px 10px;
-    color: var(--text);
-    font-size: 1rem;
-    font-family: inherit;
-    font-weight: 600;
-    outline: none;
-    width: 110px;
-    text-align: center;
-    transition: border-color 0.2s, background 0.2s;
-  }
+  .progress-bar-wrap { background: var(--border); border-radius: 99px; height: 6px; margin-bottom: 20px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent2)); border-radius: 99px; transition: width 0.4s; }
+  .q-counter { text-align: right; font-size: 0.8rem; color: var(--muted); margin-top: -14px; margin-bottom: 16px; }
+  .q-card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 22px 20px; }
+  .q-type-badge { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .q-instruction { font-size: 0.82rem; color: var(--muted); margin-bottom: 10px; }
+  .sentence-wrap { font-size: 1.05rem; font-weight: 600; line-height: 2.4; color: #f1f5f9; margin-bottom: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .word-input { background: #0f0f1a; border: 2px solid var(--accent2); border-radius: 8px; padding: 4px 10px; color: var(--text); font-size: 1rem; font-family: inherit; font-weight: 600; outline: none; width: 110px; text-align: center; transition: border-color 0.2s, background 0.2s; }
   .word-input:focus { border-color: #a78bfa; }
   .word-input.correct-input { border-color: var(--correct); background: #052e16; color: #86efac; }
   .word-input.wrong-input { border-color: var(--wrong); background: #2d0707; color: #fca5a5; }
-  .word-input.wide { width: 140px; }
-
-  /* multiple choice */
+  .word-input.wide { width: 145px; }
   .mc-options { display: flex; flex-direction: column; gap: 9px; margin-bottom: 12px; }
-  .mc-btn {
-    background: #0f0f1a;
-    border: 2px solid var(--border);
-    border-radius: 10px;
-    padding: 11px 14px;
-    color: var(--text);
-    font-size: 0.95rem;
-    font-family: inherit;
-    text-align: left;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-  }
+  .mc-btn { background: #0f0f1a; border: 2px solid var(--border); border-radius: 10px; padding: 11px 14px; color: var(--text); font-size: 0.95rem; font-family: inherit; text-align: left; cursor: pointer; transition: border-color 0.15s, background 0.15s; }
   .mc-btn:hover:not(:disabled) { border-color: var(--accent2); background: #1a1a2e; }
   .mc-btn.selected-correct { border-color: var(--correct); background: #052e16; color: #86efac; }
   .mc-btn.selected-wrong { border-color: var(--wrong); background: #2d0707; color: #fca5a5; }
   .mc-btn.reveal-correct { border-color: var(--correct); background: #052e16; color: #86efac; }
-
-  .btn-check {
-    width: 100%;
-    padding: 12px;
-    background: var(--accent);
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-bottom: 10px;
-  }
+  .btn-check { width: 100%; padding: 12px; background: var(--accent); color: #fff; font-size: 1rem; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; margin-bottom: 10px; }
   .btn-check:disabled { opacity: 0.4; cursor: default; }
-
-  .feedback {
-    font-size: 0.9rem;
-    padding: 10px 14px;
-    border-radius: 10px;
-    margin-bottom: 12px;
-    display: none;
-    line-height: 1.5;
-  }
+  .feedback { font-size: 0.9rem; padding: 10px 14px; border-radius: 10px; margin-bottom: 12px; display: none; line-height: 1.5; }
   .feedback.correct { background: #052e16; color: #86efac; border: 1px solid #166534; display: block; }
   .feedback.wrong { background: #2d0707; color: #fca5a5; border: 1px solid #7f1d1d; display: block; }
-
-  .btn-next {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    display: none;
-  }
-
-  /* RESULTS */
+  .btn-next { width: 100%; padding: 12px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; font-size: 1rem; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; display: none; }
   #results { display: none; max-width: 640px; margin: 0 auto; text-align: center; }
-  .score-circle {
-    width: 110px; height: 110px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; font-weight: 800;
-    margin: 20px auto;
-  }
+  .score-circle { width: 110px; height: 110px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent2)); display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 800; margin: 20px auto; }
   .result-msg { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
   .result-sub { font-size: 0.9rem; color: var(--muted); margin-bottom: 24px; }
-  .breakdown {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 16px 20px;
-    margin-bottom: 20px;
-    text-align: left;
-  }
-  .breakdown h3 {
-    font-size: 0.85rem; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px;
-  }
-  .bd-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem;
-  }
+  .breakdown { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 16px 20px; margin-bottom: 20px; text-align: left; }
+  .breakdown h3 { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 12px; }
+  .bd-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; }
   .bd-row:last-child { border-bottom: none; }
   .bd-tag { padding: 2px 8px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; }
   .tag-ok { background: #14532d; color: #86efac; }
   .tag-bad { background: #7f1d1d; color: #fca5a5; }
-  .btn-retry {
-    width: 100%; padding: 13px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: #fff; font-size: 1.05rem; font-weight: 700;
-    border: none; border-radius: 12px; cursor: pointer;
-  }
-  .btn-restart {
-    width: 100%; padding: 11px;
-    background: transparent; color: var(--muted); font-size: 0.9rem;
-    border: 1px solid var(--border); border-radius: 12px; cursor: pointer; margin-top: 10px;
-  }
+  .btn-retry { width: 100%; padding: 13px; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: #fff; font-size: 1.05rem; font-weight: 700; border: none; border-radius: 12px; cursor: pointer; }
+  .btn-restart { width: 100%; padding: 11px; background: transparent; color: var(--muted); font-size: 0.9rem; border: 1px solid var(--border); border-radius: 12px; cursor: pointer; margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -275,7 +91,6 @@
 <h1>Will Future</h1>
 <p class="subtitle">Budúci čas s <em>will</em> – precvič si pravidlá!</p>
 
-<!-- EXPLAINER -->
 <div id="explainer">
   <div class="rule-card">
     <div class="rule-label pos">+ Kladná veta</div>
@@ -301,7 +116,6 @@
   <button class="btn-start" onclick="startQuiz()">Rozumiem – začni kvíz! 🚀</button>
 </div>
 
-<!-- QUIZ -->
 <div id="quiz">
   <div class="progress-bar-wrap">
     <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
@@ -316,7 +130,6 @@
   </div>
 </div>
 
-<!-- RESULTS -->
 <div id="results">
   <div class="score-circle" id="scoreCircle"></div>
   <div class="result-msg" id="resultMsg"></div>
@@ -327,59 +140,61 @@
 </div>
 
 <script>
-// Each fill question has:
-//   parts: array of {text: '...', blank: false} or {blank: true, answer: ['word1','word2'...], width: 'normal'|'wide'}
-// MC questions unchanged.
-
+// parts: array of {text:'...'} or {blank:true, answer:['word',...], label:'placeholder', wide:true/false}
 const ALL_QUESTIONS = [
+
   // ---- KLADNÉ VETY ----
   {
     type: 'fill',
     topic: 'Kladná veta',
     instruction: 'Doplň správne slová do políčok:',
+    // She will play football tomorrow.
     parts: [
       {text: 'She'},
       {blank: true, answer: ['will'], label: 'will'},
-      {blank: true, answer: ['come'], label: 'sloveso'},
-      {text: 'tomorrow.'}
+      {blank: true, answer: ['play'], label: 'sloveso'},
+      {text: 'football tomorrow.'}
     ],
-    hint: 'will + come'
+    hint: 'will + play'
   },
   {
     type: 'fill',
     topic: 'Kladná veta',
     instruction: 'Doplň správne slová do políčok:',
+    // I will eat pizza for dinner.
     parts: [
       {text: 'I'},
       {blank: true, answer: ['will'], label: 'will'},
-      {blank: true, answer: ['help'], label: 'sloveso'},
-      {text: 'you.'}
+      {blank: true, answer: ['eat'], label: 'sloveso'},
+      {text: 'pizza for dinner.'}
     ],
-    hint: 'will + help'
+    hint: 'will + eat'
   },
   {
     type: 'fill',
     topic: 'Kladná veta',
     instruction: 'Doplň správne slová do políčok:',
+    // They will travel to London next week.
     parts: [
       {text: 'They'},
       {blank: true, answer: ['will'], label: 'will'},
-      {blank: true, answer: ['win'], label: 'sloveso'},
-      {text: 'the match.'}
+      {blank: true, answer: ['travel'], label: 'sloveso'},
+      {text: 'to London next week.'}
     ],
-    hint: 'will + win'
+    hint: 'will + travel'
   },
   {
     type: 'fill',
     topic: 'Kladná veta',
     instruction: 'Doplň správne slová do políčok:',
+    // My mum will cook soup tonight.
     parts: [
       {text: 'My mum'},
       {blank: true, answer: ['will'], label: 'will'},
-      {blank: true, answer: ['cook', 'make'], label: 'sloveso'},
-      {text: 'dinner.'}
+      {blank: true, answer: ['cook'], label: 'sloveso'},
+      {text: 'soup tonight.'}
     ],
-    hint: 'will + cook  (alebo make)'
+    hint: 'will + cook'
   },
 
   // ---- ZÁPORNÉ VETY ----
@@ -387,11 +202,12 @@ const ALL_QUESTIONS = [
     type: 'fill',
     topic: 'Záporná veta',
     instruction: 'Doplň zápornú formu (will not alebo won\'t + sloveso):',
+    // I will not / won't go to school tomorrow.
     parts: [
       {text: 'I'},
-      {blank: true, answer: ["will not", "won't"], label: 'will not / won\'t', wide: true},
+      {blank: true, answer: ['will not', "won't"], label: "will not/won't", wide: true},
       {blank: true, answer: ['go'], label: 'sloveso'},
-      {text: 'to school.'}
+      {text: 'to school tomorrow.'}
     ],
     hint: "will not  alebo  won't  +  go"
   },
@@ -399,11 +215,12 @@ const ALL_QUESTIONS = [
     type: 'fill',
     topic: 'Záporná veta',
     instruction: 'Doplň zápornú formu:',
+    // He will not / won't eat vegetables.
     parts: [
       {text: 'He'},
-      {blank: true, answer: ["will not", "won't"], label: 'will not / won\'t', wide: true},
+      {blank: true, answer: ['will not', "won't"], label: "will not/won't", wide: true},
       {blank: true, answer: ['eat'], label: 'sloveso'},
-      {text: 'meat.'}
+      {text: 'vegetables.'}
     ],
     hint: "will not  alebo  won't  +  eat"
   },
@@ -411,25 +228,27 @@ const ALL_QUESTIONS = [
     type: 'fill',
     topic: 'Záporná veta',
     instruction: 'Doplň zápornú formu:',
+    // She will not / won't watch TV tonight.
     parts: [
       {text: 'She'},
-      {blank: true, answer: ["will not", "won't"], label: 'will not / won\'t', wide: true},
-      {blank: true, answer: ['call'], label: 'sloveso'},
-      {text: '.'}
+      {blank: true, answer: ['will not', "won't"], label: "will not/won't", wide: true},
+      {blank: true, answer: ['watch'], label: 'sloveso'},
+      {text: 'TV tonight.'}
     ],
-    hint: "will not  alebo  won't  +  call"
+    hint: "will not  alebo  won't  +  watch"
   },
   {
     type: 'fill',
     topic: 'Záporná veta',
     instruction: 'Doplň zápornú formu:',
+    // We will not / won't play tennis on Sunday.
     parts: [
       {text: 'We'},
-      {blank: true, answer: ["will not", "won't"], label: 'will not / won\'t', wide: true},
-      {blank: true, answer: ['go'], label: 'sloveso'},
-      {text: 'to the cinema.'}
+      {blank: true, answer: ['will not', "won't"], label: "will not/won't", wide: true},
+      {blank: true, answer: ['play'], label: 'sloveso'},
+      {text: 'tennis on Sunday.'}
     ],
-    hint: "will not  alebo  won't  +  go"
+    hint: "will not  alebo  won't  +  play"
   },
 
   // ---- OTÁZKY ----
@@ -437,11 +256,12 @@ const ALL_QUESTIONS = [
     type: 'fill',
     topic: 'Otázka',
     instruction: 'Doplň správne slová — otázka začína na Will:',
+    // Will you help me with my homework?
     parts: [
       {blank: true, answer: ['will'], label: 'Will'},
       {text: 'you'},
       {blank: true, answer: ['help'], label: 'sloveso'},
-      {text: 'me?'}
+      {text: 'me with my homework?'}
     ],
     hint: 'Will + you + help'
   },
@@ -449,25 +269,27 @@ const ALL_QUESTIONS = [
     type: 'fill',
     topic: 'Otázka',
     instruction: 'Doplň správne slová:',
+    // Will she sing at the concert?
     parts: [
       {blank: true, answer: ['will'], label: 'Will'},
       {text: 'she'},
-      {blank: true, answer: ['come'], label: 'sloveso'},
-      {text: 'to the party?'}
+      {blank: true, answer: ['sing'], label: 'sloveso'},
+      {text: 'at the concert?'}
     ],
-    hint: 'Will + she + come'
+    hint: 'Will + she + sing'
   },
   {
     type: 'fill',
     topic: 'Otázka',
     instruction: 'Doplň správne slová:',
+    // Will they fly to Paris?
     parts: [
       {blank: true, answer: ['will'], label: 'Will'},
       {text: 'they'},
-      {blank: true, answer: ['travel'], label: 'sloveso'},
-      {text: 'to London?'}
+      {blank: true, answer: ['fly'], label: 'sloveso'},
+      {text: 'to Paris?'}
     ],
-    hint: 'Will + they + travel'
+    hint: 'Will + they + fly'
   },
 
   // ---- MULTIPLE CHOICE ----
@@ -558,7 +380,7 @@ const ALL_QUESTIONS = [
     type: 'mc',
     topic: 'Kladná veta',
     instruction: 'Vyber správne slovo:',
-    prompt: '"He will ___ his homework."',
+    prompt: '"He will ___ his homework after school."',
     options: ['does', 'did', 'do', 'doing'],
     correct: 2,
     hint: 'Po will ide základný tvar: do'
@@ -586,18 +408,13 @@ function norm(s) {
     .replace(/\s+/g, ' ');
 }
 
-let queue = [];
-let current = 0;
-let wrongIndexes = [];
-let topicStats = {};
+let queue = [], current = 0, wrongIndexes = [], topicStats = {};
 
 function startQuiz() {
   queue = ALL_QUESTIONS.map((_, i) => i);
   wrongIndexes = [];
   topicStats = {};
-  ALL_QUESTIONS.forEach(q => {
-    if (!topicStats[q.topic]) topicStats[q.topic] = { correct: 0, total: 0 };
-  });
+  ALL_QUESTIONS.forEach(q => { if (!topicStats[q.topic]) topicStats[q.topic] = {correct:0, total:0}; });
   current = 0;
   document.getElementById('explainer').style.display = 'none';
   document.getElementById('quiz').style.display = 'block';
@@ -608,9 +425,8 @@ function showQuestion() {
   const idx = queue[current];
   const q = ALL_QUESTIONS[idx];
   const total = queue.length;
-
   document.getElementById('progressBar').style.width = (current / total * 100) + '%';
-  document.getElementById('qCounter').textContent = (current + 1) + ' / ' + total;
+  document.getElementById('qCounter').textContent = (current+1) + ' / ' + total;
   document.getElementById('qBadge').textContent = q.topic;
   document.getElementById('qInstruction').textContent = q.instruction || '';
   document.getElementById('feedback').className = 'feedback';
@@ -621,10 +437,8 @@ function showQuestion() {
   area.innerHTML = '';
 
   if (q.type === 'fill') {
-    // Build sentence with inline input fields
     const sentWrap = document.createElement('div');
     sentWrap.className = 'sentence-wrap';
-
     let blankIndex = 0;
     q.parts.forEach(part => {
       if (!part.blank) {
@@ -654,20 +468,15 @@ function showQuestion() {
     btn.onclick = checkFill;
     area.appendChild(btn);
 
-    // Enter key on last input triggers check
     const inputs = sentWrap.querySelectorAll('input');
     inputs.forEach((inp, i) => {
       inp.addEventListener('keydown', e => {
-        if (e.key === 'Enter') {
-          if (i < inputs.length - 1) inputs[i+1].focus();
-          else checkFill();
-        }
+        if (e.key === 'Enter') { if (i < inputs.length-1) inputs[i+1].focus(); else checkFill(); }
       });
     });
     if (inputs.length > 0) setTimeout(() => inputs[0].focus(), 100);
 
   } else {
-    // MC
     if (q.prompt) {
       const p = document.createElement('div');
       p.style.cssText = 'font-size:1rem;font-weight:600;color:#f1f5f9;margin-bottom:14px;';
@@ -696,20 +505,17 @@ function checkFill() {
 
   let allCorrect = true;
   let blankIdx = 0;
-
   q.parts.forEach(part => {
     if (!part.blank) return;
     const inp = inputs[blankIdx];
     const val = norm(inp.value);
-    const accepted = part.answer.map(a => norm(a));
-    const ok = accepted.includes(val);
+    const ok = part.answer.map(a => norm(a)).includes(val);
     inp.classList.add(ok ? 'correct-input' : 'wrong-input');
     if (!ok) allCorrect = false;
     blankIdx++;
   });
 
   recordResult(idx, allCorrect);
-
   const fb = document.getElementById('feedback');
   if (allCorrect) {
     fb.className = 'feedback correct';
@@ -739,11 +545,8 @@ function checkMC(chosen) {
 function recordResult(idx, correct) {
   const q = ALL_QUESTIONS[idx];
   topicStats[q.topic].total++;
-  if (correct) {
-    topicStats[q.topic].correct++;
-  } else {
-    if (!wrongIndexes.includes(idx)) wrongIndexes.push(idx);
-  }
+  if (correct) topicStats[q.topic].correct++;
+  else if (!wrongIndexes.includes(idx)) wrongIndexes.push(idx);
 }
 
 function nextQuestion() {
@@ -755,26 +558,22 @@ function nextQuestion() {
 function showResults() {
   document.getElementById('quiz').style.display = 'none';
   document.getElementById('results').style.display = 'block';
-
   const total = ALL_QUESTIONS.length;
   const correct = total - wrongIndexes.length;
   const pct = Math.round(correct / total * 100);
-
   document.getElementById('scoreCircle').textContent = pct + '%';
-
   let msg, sub;
   if (pct === 100) { msg = '🎉 Perfektné! Všetko správne!'; sub = 'Will future ovládaš na jednotku!'; }
   else if (pct >= 80) { msg = '👍 Skoro perfektné!'; sub = 'Malé chybičky – opakujeme ich hneď.'; }
   else if (pct >= 60) { msg = '💪 Dobre, ale ešte treba precvičiť.'; sub = 'Opakujeme nesprávne otázky.'; }
   else { msg = '📚 Ešte to chce tréning!'; sub = 'Nevadí – opakujeme, kým to bude fajn.'; }
-
   document.getElementById('resultMsg').textContent = msg;
   document.getElementById('resultSub').textContent = sub;
 
   let bd = '<div class="breakdown"><h3>Výsledky podľa témy</h3>';
   for (const [topic, stat] of Object.entries(topicStats)) {
     const ok = stat.correct === stat.total;
-    bd += `<div class="bd-row"><span>${topic}</span><span class="bd-tag ${ok ? 'tag-ok' : 'tag-bad'}">${stat.correct}/${stat.total}</span></div>`;
+    bd += `<div class="bd-row"><span>${topic}</span><span class="bd-tag ${ok?'tag-ok':'tag-bad'}">${stat.correct}/${stat.total}</span></div>`;
   }
   bd += '</div>';
   document.getElementById('breakdown').outerHTML = bd;
